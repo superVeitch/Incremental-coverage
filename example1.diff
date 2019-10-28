@@ -1,30 +1,17 @@
-drwxr-xr-x@  5 bilibili  staff   160B Aug 21 11:19 client
-diff --git a/src/com/bible/bible.go b/src/com/bible/bible.go
-index caef1fd..f19f605 100644
---- a/src/com/bible/bible.go
-+++ b/src/com/bible/bible.go
-@@ -2,6 +2,7 @@ package main
+diff --git a/src/com/bible/constants/constants.go b/src/com/bible/constants/constants.go
+index dc7adb6..2aca35a 100644
+--- a/src/com/bible/constants/constants.go
++++ b/src/com/bible/constants/constants.go
+@@ -3,11 +3,7 @@ package constants
+ const Name = "veitch"
 
- import (
-        "fmt"
-+       "net/http"
-        "os"
-        "time"
- )
-@@ -43,11 +44,11 @@ func main() {
-        go fibonacci(cap(c), c)
-        fmt.Println("test")
-
--       c = make(chan int, 1)
--       for i := 0; i< 5; i++ {
--               c <- i
--               TestReturn(c)
+ func Add(x int, y int) int {
+-       if x > 3 {
+-               return x - y
+-       } else {
+-               return x + y
 -       }
-+       //c := make(chan int, 1)
-+       //for i := 0; i< 5; i++ {
-+       //      c <- i
-+       //      TestReturn(c)
-+       //}
++       return x + y
+ }
 
-        for {
-                fmt.Println(os.Getenv("USER"))
+ func reduce(before int, to int) int {
