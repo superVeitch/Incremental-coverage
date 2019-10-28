@@ -1,7 +1,7 @@
 // Copyright (c) 2015 Jesse Meek <https://github.com/waigani>
 // This program is Free Software see LICENSE file for details.
 
-package diffparser
+package main
 
 import (
 	"regexp"
