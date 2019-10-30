@@ -13,7 +13,7 @@ import (
 // TODO(waigani) tests are missing more creative names (spaces, special
 // chars), and diffed files that are not in the current directory.
 
-func setup(t *testing.T) *Diff {
+func setup1(t *testing.T) *Diff {
 	byt, err := ioutil.ReadFile("example1.diff")
 	require.NoError(t, err)
 
@@ -24,7 +24,7 @@ func setup(t *testing.T) *Diff {
 	return diff
 }
 func TestFileModeAndNaming(t *testing.T) {
-	diff := setup(t)
+	diff := setup1(t)
 	for i := 0; i< 6; i++{
 		file := diff.Files[i]
 		t.Logf("testing file: %v", file)
@@ -35,7 +35,7 @@ func TestFileModeAndNaming(t *testing.T) {
 }
 
 func TestHunk(t *testing.T) {
-	diff := setup(t)
+	diff := setup1(t)
 	expectedOrigLines := []DiffLine{
 		{
 			Mode:     UNCHANGED,
