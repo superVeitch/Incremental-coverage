@@ -16,3 +16,8 @@ func TestParse(t *testing.T) {
 
 	fmt.Println(q)
 }
+
+func TestParse2(t *testing.T) {
+	var diffPosCount int
+	fmt.Println(diffPosCount)
+}

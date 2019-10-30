@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func setup() *Diff {
+func parseFile() *Diff {
 	byt, err := ioutil.ReadFile("example1.diff")
 	if err != nil {
 		fmt.Println(err)
@@ -25,7 +25,7 @@ type DiffFileRe struct {
 func main()  {
 
 	// You now have a slice of files from the diff,
-	files := setup()
+	files := parseFile()
 
 
 	profile, err := cover.ParseProfiles("coverage.cov")

@@ -51,7 +51,7 @@ const (
 // DiffLine is the least part of an actual diff
 type DiffLine struct {
 	Mode     DiffLineMode
-	Number   int
+	Number   int // the line in the source code
 	Content  string
 	Position int // the line in the diff
 }
@@ -114,6 +114,25 @@ func regFind(s string, reg string, group int) string {
 
 func lineMode(line string) (*DiffLineMode, error) {
 	var m DiffLineMode
+	switch line[:1] {
+	case " ":
+		m = UNCHANGED
+	case "+":
+		m = ADDED
+	case "-":
+		m = REMOVED
+	default:
+		return nil, errors.New("could not parse line mode for line: \"" + line + "\"")
+	}
+	return &m, nil
+}
+
+func lineModeV(line string) (*DiffLineMode, error) {
+	var m DiffLineMode
+	if len(line) == 0 {
+		m = UNCHANGED
+		return &m, nil
+	}
 	switch line[:1] {
 	case " ":
 		m = UNCHANGED
@@ -356,14 +375,14 @@ func ParseDiff(diffString string) ([]*DiffHunk, error) {
 			// (re)set line counts
 			ADDEDCount = hunk.NewRange.Start
 			REMOVEDCount = hunk.OrigRange.Start
-		case inHunk && isSourceLine(l):
-			m, err := lineMode(l)
+		case inHunk && isSourceLineV2(l):
+			m, err := lineModeV(l)
 			if err != nil {
 				return nil, err
 			}
 			line := DiffLine{
 				Mode:     *m,
-				Content:  l[1:],
+				Content:  l,
 				Position: diffPosCount,
 			}
 			newLine := line
@@ -403,6 +422,16 @@ func isSourceLine(line string) bool {
 		return false
 	}
 	if l := len(line); l == 0 || (l >= 3 && (line[:3] == "---" || line[:3] == "+++")) {
+		return false
+	}
+	return true
+}
+
+func isSourceLineV2(line string) bool {
+	if line == `\ No newline at end of file` {
+		return false
+	}
+	if l := len(line); l >= 3 && (line[:3] == "---" || line[:3] == "+++") {
 		return false
 	}
 	return true
