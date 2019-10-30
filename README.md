@@ -41,6 +41,11 @@ func main() {
 }
 ```
 
+questions
+-------------
+* Blank lines are not calculated in Statistics
+
+
 More Examples
 -------------
 

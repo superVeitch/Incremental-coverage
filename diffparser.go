@@ -281,6 +281,123 @@ func Parse(diffString string) (*Diff, error) {
 	return &diff, nil
 }
 
+// Parse takes a diff, such as produced by "gitlab-api diff", and parses it into a
+// Diff struct.
+func ParseDiff(diffString string) ([]*DiffHunk, error) {
+	lines := strings.Split(diffString, "\n")
+
+	var hunk *DiffHunk
+	var hunks []*DiffHunk
+	var ADDEDCount int
+	var REMOVEDCount int
+	var inHunk bool
+
+	var diffPosCount int
+	var firstHunkInFile bool
+	// Parse each line of diff.
+	for _, l := range lines {
+		diffPosCount++
+		switch {
+		case strings.HasPrefix(l, "@@ "):
+			if firstHunkInFile {
+				diffPosCount = 0
+				firstHunkInFile = false
+			}
+
+			inHunk = true
+			// Start new hunk.
+			hunk = &DiffHunk{}
+			hunks = append(hunks, hunk)
+
+			// Parse hunk heading for ranges
+			re := regexp.MustCompile(`@@ \-(\d+),?(\d+)? \+(\d+),?(\d+)? @@ ?(.+)?`)
+			m := re.FindStringSubmatch(l)
+			if len(m) < 5 {
+				return nil, errors.New("Error parsing line: " + l)
+			}
+			a, err := strconv.Atoi(m[1])
+			if err != nil {
+				return nil, err
+			}
+			b := a
+			if len(m[2]) > 0 {
+				b, err = strconv.Atoi(m[2])
+				if err != nil {
+					return nil, err
+				}
+			}
+			c, err := strconv.Atoi(m[3])
+			if err != nil {
+				return nil, err
+			}
+			d := c
+			if len(m[4]) > 0 {
+				d, err = strconv.Atoi(m[4])
+				if err != nil {
+					return nil, err
+				}
+			}
+			if len(m[5]) > 0 {
+				hunk.HunkHeader = m[5]
+			}
+
+			// hunk orig range.
+			hunk.OrigRange = DiffRange{
+				Start:  a,
+				Length: b,
+			}
+
+			// hunk new range.
+			hunk.NewRange = DiffRange{
+				Start:  c,
+				Length: d,
+			}
+
+			// (re)set line counts
+			ADDEDCount = hunk.NewRange.Start
+			REMOVEDCount = hunk.OrigRange.Start
+		case inHunk && isSourceLine(l):
+			m, err := lineMode(l)
+			if err != nil {
+				return nil, err
+			}
+			line := DiffLine{
+				Mode:     *m,
+				Content:  l[1:],
+				Position: diffPosCount,
+			}
+			newLine := line
+			origLine := line
+
+			// add lines to ranges
+			switch *m {
+			case ADDED:
+				newLine.Number = ADDEDCount
+				hunk.NewRange.Lines = append(hunk.NewRange.Lines, &newLine)
+				hunk.WholeRange.Lines = append(hunk.WholeRange.Lines, &newLine)
+				ADDEDCount++
+
+			case REMOVED:
+				origLine.Number = REMOVEDCount
+				hunk.OrigRange.Lines = append(hunk.OrigRange.Lines, &origLine)
+				hunk.WholeRange.Lines = append(hunk.WholeRange.Lines, &origLine)
+				REMOVEDCount++
+
+			case UNCHANGED:
+				newLine.Number = ADDEDCount
+				hunk.NewRange.Lines = append(hunk.NewRange.Lines, &newLine)
+				hunk.WholeRange.Lines = append(hunk.WholeRange.Lines, &newLine)
+				origLine.Number = REMOVEDCount
+				hunk.OrigRange.Lines = append(hunk.OrigRange.Lines, &origLine)
+				ADDEDCount++
+				REMOVEDCount++
+			}
+		}
+	}
+
+	return hunks, nil
+}
+
 func isSourceLine(line string) bool {
 	if line == `\ No newline at end of file` {
 		return false

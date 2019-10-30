@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ddab83f5-9b9b-401d-ab95-5e5b3baec748" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/gitlab.diff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example1.diff" beforeDir="false" afterPath="$PROJECT_DIR$/example1.diff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diffparser.go" beforeDir="false" afterPath="$PROJECT_DIR$/diffparser.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diffparser_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/diffparser_test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,19 +30,6 @@
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="false" />
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/diffparser.iml" />
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/.idea/modules.xml" />
-        <option value="$PROJECT_DIR$/.idea/codeStyles/Project.xml" />
-        <option value="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" />
-        <option value="$PROJECT_DIR$/.idea/.gitignore" />
-      </list>
-    </option>
   </component>
   <component name="ProjectId" id="1SpGCXWMIzifveWd7v2OfrmOKjj" />
   <component name="PropertiesComponent">
@@ -73,7 +62,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build github.com/waigani/diffparser">
+  <component name="RunManager" selected="Go Test.TestParse in github.com/waigani/diffparser">
     <configuration name="go build github.com/waigani/diffparser" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="diffparser" />
       <working_directory value="$PROJECT_DIR$" />
@@ -94,8 +83,20 @@
       <pattern value="^TestFileModeAndNaming$" />
       <method v="2" />
     </configuration>
+    <configuration name="TestParse in github.com/waigani/diffparser" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="diffparser" />
+      <working_directory value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/waigani/diffparser" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestParse$" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestParse in github.com/waigani/diffparser" />
         <item itemvalue="Go Build.go build github.com/waigani/diffparser" />
         <item itemvalue="Go Test.TestFileModeAndNaming in github.com/waigani/diffparser" />
       </list>
@@ -109,7 +110,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -129,13 +132,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/main.go</url>
-          <line>36</line>
-          <option name="timeStamp" value="5" />
+          <line>30</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/main.go</url>
-          <line>55</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/main_test.go</url>
+          <line>14</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

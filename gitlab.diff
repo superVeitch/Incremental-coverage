@@ -1,0 +1,13 @@
+@@ -3,11 +3,7 @@ package constants
+ const Name = "veitch"
+
+ func Add(x int, y int) int {
+-       if x > 3 {
+-               return x - y
+-       } else {
+-               return x + y
+-       }
++       return x + y
+ }
+
+ func reduce(before int, to int) int {
