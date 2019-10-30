@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ddab83f5-9b9b-401d-ab95-5e5b3baec748" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/gitlab.diff" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/main_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diffparser.go" beforeDir="false" afterPath="$PROJECT_DIR$/diffparser.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/diffparser_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/diffparser_test.go" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/html.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+>>>>>>> 34dc0c27e601cb2482db0aa4ed78d8b2eef953c7
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -132,6 +138,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/main.go</url>
+<<<<<<< HEAD
           <line>30</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
@@ -139,6 +146,15 @@
           <url>file://$PROJECT_DIR$/main_test.go</url>
           <line>14</line>
           <option name="timeStamp" value="3" />
+=======
+          <line>38</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/main.go</url>
+          <line>95</line>
+          <option name="timeStamp" value="6" />
+>>>>>>> 34dc0c27e601cb2482db0aa4ed78d8b2eef953c7
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

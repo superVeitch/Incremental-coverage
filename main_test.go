@@ -12,7 +12,7 @@ func TestParse(t *testing.T) {
 		fmt.Println(err)
 	}
 
-	q, _ := ParseGitlab(string(byt))
+	q, _ := ParseDiff(string(byt))
 
 	fmt.Println(q)
 }
